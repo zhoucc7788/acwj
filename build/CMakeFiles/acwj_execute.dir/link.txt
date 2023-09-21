@@ -1,0 +1,1 @@
+/usr/bin/cc -g -rdynamic CMakeFiles/acwj_execute.dir/src/main.c.o CMakeFiles/acwj_execute.dir/src/scan.c.o -o ../executable/acwj_execute 

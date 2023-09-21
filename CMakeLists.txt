@@ -8,20 +8,22 @@ set(TARGET "${projectName}_execute")
 
 message("TARGET: ${TARGET}")
 
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include)
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include/)
 
-file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cpp)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.c)
 
-message("SOURCES: ${SOURCES}")
+foreach(source ${SOURCES})
+    message(STATUS "Source file: ${source}")
+endforeach()
 
-file(GLOB EXECUTES ${CMAKE_SOURCE_DIR}/executes/*.cpp)
+#file(GLOB EXECUTES ${CMAKE_SOURCE_DIR}/executes/*.c)
 
-message("EXECUTES: ${EXECUTES}")
+#message("EXECUTES: ${EXECUTES}")
 
 set(CMAKE_CXX_FLAGS "-g -O0 -Wall")
 
 set(CMAKE_BUILD_TYPE Debug)
 
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR})
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/executable)
 
-add_executable(${TARGET} ${EXECUTES} ${SOURCES})
+add_executable(${TARGET} ${SOURCES})

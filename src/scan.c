@@ -1,7 +1,15 @@
 // 这个文件实现主要的功能，在这里面包括所有自己写的.h文件
-#include "data.h"
 #include "defs.h"
+#include "data.h"
 #include "decl.h"
+
+static int chrpos(char *s, int c){ //即在参数 s 所指向的字符串中搜索第一次出现字符 c 的位置
+    char *p;
+
+    p = strchr(s, c);
+
+    return (p ? p - s : -1);
+}
 
 int next(void)
 {
@@ -39,6 +47,20 @@ static int skip(void)
     return c;
 }
 
+static int scanint(int c){
+    
+    int k, val = 0;
+
+    while((k = chrpos("0123456789", c)) >= 0){
+        val = val * 10;
+        c = next();
+    }
+
+    putback(c);
+    return val;
+}
+
+
 int scan(struct token *t)
 {
 
@@ -75,3 +97,4 @@ int scan(struct token *t)
 
     return 1;
 }
+
